@@ -1,49 +1,38 @@
-const cities = [
-  {
-    madrid: {
-      destinos: {
-        barcelona: "coche",
-        valencia: "avión",
-      }
+const cities = {
+  madrid: {
+    destinos: {
+      barcelona: "coche",
+      valencia: "avión",
     }
   },
-  {
-    barcelona: {
-      destinos: {
-        madrid: "tren",
-        valencia: "tren",
-        roma: "avión",
-        paris: "coche",
-      }
+  barcelona: {
+    destinos: {
+      madrid: "tren",
+      valencia: "tren",
+      roma: "avión",
+      paris: "coche",
     }
   },
-  {
-    valencia: {
-      destinos: {
-        madrid: "avión",
-        barcelona: "barco",
-        malta: "barco",
-      }
+  valencia: {
+    destinos: {
+      madrid: "avión",
+      barcelona: "barco",
+      malta: "barco",
     }
   },
-  {
-    roma: {
-      destinos: {
-        malta: "avión",
-      }
+  roma: {
+    destinos: {
+      malta: "avión",
     }
   },
-  {
-    malta: {
-      destinos: {
-        roma: "avión",
-      }
+  malta: {
+    destinos: {
+      roma: "avión",
     }
   },
-  {
-    paris: {
-      destinos: {}
-    }
+  paris: {
+    destinos: {}
   }
-]
-export default cities
+};
+
+export default cities;

@@ -1,37 +1,32 @@
 import cities from "./ciudades.js";
 
 // Variables de ejemplo para la ciudad de salida y destino.
+// Puedes cambiar estos valores para probar diferentes rutas.
+const salida = "madrid";
+const llegada = "malta";
 
-const salida = "valencia";
-const llegada = "roma";
-
-// Función para obtener una ciudad del array `cities`.
-// Se busca la ciudad cuyo nombre coincida con el valor de `ciudad`.
-const getCity = (ciudad) => 
-  cities.find(city => 
-    Object.keys(city).includes(ciudad)
-  );
+// Función para obtener una ciudad del objeto `cities`.
+// Retorna el objeto de la ciudad si se encuentra, o `undefined` si no.
+const getCity = (ciudad) => cities[ciudad];
 
 // Función para encontrar una ruta directa desde `from` hasta `to`.
 // Retorna el tipo de transporte si existe una ruta directa, o `null` si no.
 const findDirectRoute = (from, to) => {
-  const city = getCity(from); // Busca la ciudad de salida.
-  return city?.[from]?.destinos?.[to] || null; // Retorna el transporte directo o `null` si no existe.
+  const city = getCity(from);
+  return city?.destinos?.[to] || null;
 };
 
 // Función para encontrar una ruta indirecta desde `from` hasta `to`.
 // Busca si existe una ruta intermedia para llegar al destino.
 // Retorna un objeto con detalles de la ruta indirecta, o `null` si no existe.
 const findIndirectRoute = (from, to) => {
-  const city = getCity(from); // Busca la ciudad de salida.
-  if (!city) return null; // Si no encuentra la ciudad, retorna `null`.
+  const city = getCity(from);
+  if (!city) return null;
 
   // Recorre todos los destinos posibles desde la ciudad de salida.
-  for (const intermedio in city[from].destinos) {
-    const transporteIntermedio = city[from].destinos[intermedio]; // Obtiene el transporte hacia la ciudad intermedia.
-    const transporteFinal = findDirectRoute(intermedio, to); // Verifica si hay un transporte directo desde la ciudad intermedia hasta el destino.
-
-    // Si encuentra una ruta indirecta válida, retorna los detalles de la ruta.
+  for (const intermedio in city.destinos) {
+    const transporteIntermedio = city.destinos[intermedio];
+    const transporteFinal = findDirectRoute(intermedio, to);
     if (transporteFinal) {
       return {
         ciudadIntermedia: intermedio,
